@@ -81,4 +81,4 @@
 	
 	# Ecrire ici le footer du site de toutes pages HTML
 	require_once(VIEW_PATH . 'footer.php');
-	
+?>
