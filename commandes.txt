@@ -1,69 +1,27 @@
 Rappel commandes :
-
+----------------------------------------------------------------
 git clone "..."
     OU
 git init (definis un dossier comme repository sans lui donner d'origin)
 git remote add origin master "..."
-
+---------
 git add -A
 git commit -a -m "..."
 git push origin master
-
+----------
 git pull origin master
-
+----------------------------------------------------------------
 ? dir
+----------------------------------------------------------------
+git checkout master == changer de branche
+git branch myBranchName == crée une branche
+git checkout -b myBranchName == créee + switch sur une branche
+git branch == affiches les branches existantes
+git branch -d mybranch == supprimer branche existante
+----------
+git merge GitEX2 == executée depuis la branche sur lequel on veux fusionner la branche indiquée (écrase les données
+                    en conflit sur la branche ou on se trouve)
+----------------------------------------------------------------
+ctrl + alt + m = les lignes sélectionnées sont externalisées ds une autre fonction et remplacée par
+                    un appel de fct vers la nv fct.
 
-/**
- * @return GenesisController
- */
-function getControllerGenesis()
-{
-    require_once('controllers/GenesisController.php');
-    $controller = new GenesisController();
-    return $controller;
-}
-
-/**
- * @return BooksController
- */
-function getControllerBook()
-{
-    require_once('controllers/BooksController.php');
-    $controller = new BooksController();
-    return $controller;
-}
-
-/**
- * @return ContactController
- */
-function getControllerContact()
-{
-    require_once('controllers/ContactController.php');
-    $controller = new ContactController();
-    return $controller;
-}
-
-/**
- * @return HomeController
- */
-function getControllerHome()
-{
-    require_once('controllers/HomeController.php');
-    $controller = new HomeController();
-    return $controller;
-}
-
-switch($action) {
-		case 'genesis':
-			$controller = getControllerGenesis();
-            break;
-		case 'books':
-			$controller = getControllerBook();
-            break;
-		case 'contact':
-			$controller = getControllerContact();
-            break;
-		default: # Par défaut, le contrôleur de l'accueil est sélectionné
-			$controller = getControllerHome();
-            break;
-	}
