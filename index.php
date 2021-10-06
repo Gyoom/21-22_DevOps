@@ -22,24 +22,60 @@
 	# Tester si une variable GET 'action' est précisée dans l'URL index.php?action=...
 	$action = (isset($_GET['action'])) ? htmlentities($_GET['action']) : 'default';
 	# Quelle action est demandée ?
-	switch($action) {
-		case 'genesis':
-			require_once('controllers/GenesisController.php');
-			$controller = new GenesisController();
-			break;
-		case 'books':
-			require_once('controllers/BooksController.php');
-			$controller = new BooksController();
-			break;
-		case 'contact':
-			require_once('controllers/ContactController.php');	
-			$controller = new ContactController();
-			break;	
-		default: # Par défaut, le contrôleur de l'accueil est sélectionné
-			require_once('controllers/HomeController.php');
-			$controller = new HomeController();
-			break;
-	}
+    /**
+     * @return GenesisController
+     */
+    function getControllerGenesis()
+    {
+        require_once('controllers/GenesisController.php');
+        $controller = new GenesisController();
+        return $controller;
+    }
+
+    /**
+     * @return BooksController
+     */
+    function getControllerBook()
+    {
+        require_once('controllers/BooksController.php');
+        $controller = new BooksController();
+        return $controller;
+    }
+
+    /**
+     * @return ContactController
+     */
+    function getControllerContact()
+    {
+        require_once('controllers/ContactController.php');
+        $controller = new ContactController();
+        return $controller;
+    }
+
+    /**
+     * @return HomeController
+     */
+    function getControllerHome()
+    {
+        require_once('controllers/HomeController.php');
+        $controller = new HomeController();
+        return $controller;
+    }
+
+    switch($action) {
+        case 'genesis':
+            $controller = getControllerGenesis();
+            break;
+        case 'books':
+            $controller = getControllerBook();
+            break;
+        case 'contact':
+            $controller = getControllerContact();
+            break;
+        default: # Par défaut, le contrôleur de l'accueil est sélectionné
+            $controller = getControllerHome();
+            break;
+    }
 	# Exécution du contrôleur correspondant à l'action demandée
 	$controller->run();
 	
